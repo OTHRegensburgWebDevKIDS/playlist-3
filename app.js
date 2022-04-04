@@ -10,14 +10,9 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.engine(
-  ".hbs",
-  handlebars({
-    extname: ".hbs",
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", ".hbs");
+app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+app.set('views', './views');
 
 const routes = require("./routes");
 app.use("/", routes);
