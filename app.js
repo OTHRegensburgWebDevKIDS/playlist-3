@@ -1,14 +1,15 @@
 const express = require("express");
 const logger = require("./utils/logger");
 const handlebars = require("express-handlebars");
-const bodyParser = require("body-parser");
 
 const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+//required to parse the body of a post request
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
